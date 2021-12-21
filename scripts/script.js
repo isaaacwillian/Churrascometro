@@ -29,11 +29,11 @@ button.addEventListener("click", function () {
         let people = parseInt(adult.value) + parseInt(children.value) / 2;
         let meat = (parseInt(time.value) > 6 ? 650 * people : 400 * people) / 1000;
         let beer = (parseInt(time.value) > 6 ? 2000 * parseInt(adult.value) : 1200 * parseInt(adult.value)) / 400;
-        let soda = (parseInt(time.value) > 6 ? 1500 * people : 1000 * people) / 250;
+        let soda = Math.ceil((parseInt(time.value) > 6 ? 1500 * people : 1000 * people) / 1000);
 
         document.getElementsByTagName("div")[1].children[0].innerHTML = `<h3 id="meat">${meat}Kg de Carne</h3>
                                                                          <h3 id="beer">${beer} latas de Cerveja de 400ml </h3>
-                                                                         <h3 id="soda">${soda} latas de Bebidas de 250ml</h3>`;
+                                                                         <h3 id="soda">${soda} garrafas de Bebidas de 2L</h3>`;
 
     } else {
 
