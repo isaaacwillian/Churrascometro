@@ -7,7 +7,7 @@ section{
 #div{
     background-color: rgb(243, 243, 243, 70%);
     color:rgb(59, 53, 22);
-    width: 350px;
+    width: 300px;
     text-align: center;
     margin: auto;
     margin-top: 150px;
@@ -22,6 +22,7 @@ h1{
     margin: 5px;
     width: 200px;
     box-sizing: border-box;
+    border-radius: 10px;
 }
 #button{
     background-color: rgb(71, 57, 38);
@@ -30,5 +31,15 @@ h1{
 }
 #button:hover{
     box-shadow: 0px 0px 8px rgb(71, 57, 38);
-    border: ;
+}
+#result{
+    color:white;
+    margin:auto;
+    margin-top: 100px;
+    width: 300px;
+}
+.validate:invalid {
+    border: 1px solid red;
+    background-color: rgb(252, 239, 239);
+    box-shadow: 0px 0px 5px rgb(252, 84, 84);
 }

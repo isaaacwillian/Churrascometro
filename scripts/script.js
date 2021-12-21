@@ -1,54 +1,38 @@
 // Carne - 400 gr por pessoa   + de 6 horas - 650
 // Cerveja - 1200 ml por Pessoa + 6 horas - 2000 ml
 // Refrigerante/agua - 1000 ml por pessoa + 6 horas 1500ml
-
 // Crianças valem por 0,5
-
-let inputAdultos = document.getElementById("adultos");
-let inputCriancas = document.getElementById("criancas");
-let inputDuracao = document.getElementById("duracao");
-
-let resultado = document.getElementById("resultado");
-
-function calcular() {
-    console.log("Calculando...");
-
-    let adultos = inputAdultos.value;
-    let criancas = inputCriancas.value;
-    let duracao = inputDuracao.value;
-
-
-    let qdtTotalCarne = carnePP(duracao) * adultos + (carnePP(duracao) / 2 * criancas);
-    let qdtTotalCerveja = cervejaPP(duracao) * adultos;
-    let qdtTotalBebidas = bebidasPP(duracao) * adultos + (bebidasPP(duracao) / 2 * criancas);
-
-
-    resultado.innerHTML = `<p>${qdtTotalCarne / 1000} Kg de Carne</p>`
-    resultado.innerHTML += `<p>${Math.ceil(qdtTotalCerveja / 355)} Latas de Cerveja</p>`
-    resultado.innerHTML += `<p>${Math.ceil(qdtTotalBebidas / 2000)} Pet's 2l de Bebidas</p>`
-
-
-}
-
-function carnePP(duracao) {
-    if (duracao >= 6) {
-        return 650;
+let adult = document.getElementById("adults");
+let children = document.getElementById("children");
+let time = document.getElementById("time");
+let button = document.getElementById("button");
+adult.addEventListener('focus', function () {
+    this.classList.add('validate');
+})
+children.addEventListener("focus", function () {
+    this.classList.add('validate');
+})
+time.addEventListener("focus", function () {
+    this.classList.add('validate');
+})
+button.addEventListener('click', function () {
+    if (adult.validity.valid && children.validity.valid && time.validity.valid) {
+        document.getElementsByTagName("div")[1].children[0].textContent = 'Tudo OK!';
     } else {
-        return 400;
+        document.getElementsByTagName("div")[1].children[0].textContent = 'Preencha os espaços em branco!';
     }
-}
-
-function cervejaPP(duracao) {
-    if (duracao >= 6) {
-        return 2000;
+})
+button.addEventListener("click", function () {
+    if (adult.value != '' && time.value != '' && children.value != '') {
+        let people = parseInt(adult.value) + parseInt(children.value) / 2;
+        let meat = parseInt(time.value) > 6 ? 650 * people : 400 * people;
+        let beer = parseInt(time.value) > 6 ? 2000 * parseInt(adult.value) : 1200 * parseInt(adult.value);
+        let soda = parseInt(time.value) > 6 ? 1500 * people : 1000 * people;
+        document.getElementsByTagName("div")[1].children[0].innerHTML = "<h2> Total de Carne: " + meat +
+            "<br> Total de Cerveja:" + beer + "<br> Total de soda: " + soda + "</h2>";
     } else {
-        return 1200;
+        adult.classList.add('validate');
+        children.classList.add('validate');
+        time.classList.add('validate');
     }
-}
-function bebidasPP(duracao) {
-    if (duracao >= 6) {
-        return 1500;
-    } else {
-        return 1000;
-    }
-}
+});
