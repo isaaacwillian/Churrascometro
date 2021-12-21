@@ -6,6 +6,7 @@ let adult = document.getElementById("adults");
 let children = document.getElementById("children");
 let time = document.getElementById("time");
 let button = document.getElementById("button");
+
 adult.addEventListener('focus', function () {
     this.classList.add('validate');
 })
@@ -15,24 +16,30 @@ children.addEventListener("focus", function () {
 time.addEventListener("focus", function () {
     this.classList.add('validate');
 })
+
 button.addEventListener('click', function () {
     if (adult.validity.valid && children.validity.valid && time.validity.valid) {
-        document.getElementsByTagName("div")[1].children[0].textContent = 'Tudo OK!';
     } else {
         document.getElementsByTagName("div")[1].children[0].textContent = 'Preencha os espaços em branco!';
     }
 })
 button.addEventListener("click", function () {
     if (adult.value != '' && time.value != '' && children.value != '') {
+
         let people = parseInt(adult.value) + parseInt(children.value) / 2;
-        let meat = parseInt(time.value) > 6 ? 650 * people : 400 * people;
-        let beer = parseInt(time.value) > 6 ? 2000 * parseInt(adult.value) : 1200 * parseInt(adult.value);
-        let soda = parseInt(time.value) > 6 ? 1500 * people : 1000 * people;
-        document.getElementsByTagName("div")[1].children[0].innerHTML = "<h2> Total de Carne: " + meat +
-            "<br> Total de Cerveja:" + beer + "<br> Total de soda: " + soda + "</h2>";
+        let meat = (parseInt(time.value) > 6 ? 650 * people : 400 * people) / 1000;
+        let beer = (parseInt(time.value) > 6 ? 2000 * parseInt(adult.value) : 1200 * parseInt(adult.value)) / 400;
+        let soda = (parseInt(time.value) > 6 ? 1500 * people : 1000 * people) / 250;
+
+        document.getElementsByTagName("div")[1].children[0].innerHTML = `<h3 id="meat">${meat}Kg de Carne</h3>
+                                                                         <h3 id="beer">${beer} latas de Cerveja de 400ml </h3>
+                                                                         <h3 id="soda">${soda} latas de Bebidas de 250ml</h3>`;
+
     } else {
+
         adult.classList.add('validate');
         children.classList.add('validate');
         time.classList.add('validate');
+
     }
 });
