@@ -23,6 +23,7 @@ button.addEventListener('click', function () {
     document.getElementsByTagName('div')[1].children[0].textContent =
       'Preencha os espaços em branco!'
   }
+
 })
 button.addEventListener('click', function () {
   if (adult.value != '' && time.value != '' && children.value != '') {
@@ -39,8 +40,8 @@ button.addEventListener('click', function () {
     document.getElementsByTagName(
       'div'
     )[1].children[0].innerHTML = `<h3 id="meat">${meat}Kg de Carne</h3>
-                                                                         <h3 id="beer">${beer} latas de Cerveja de 400ml </h3>
-                                                                         <h3 id="soda">${soda} garrafas de Bebidas de 2L</h3>`
+                                  <h3 id="beer">${beer} latas de Cerveja de 400ml </h3>
+                                  <h3 id="soda">${soda} garrafas de Bebidas de 2L</h3>`
   } else {
     adult.classList.add('validate')
     children.classList.add('validate')
